@@ -9,6 +9,7 @@ public class Unit : MonoBehaviour
 	private Vector3 targetPosition;
 	private float stoppingDistance = 0.1f;
 	private float moveSpeed = 4f;
+	private float rotationSpeed = 10f;
 
 	private void Update()
 	{
@@ -16,6 +17,7 @@ public class Unit : MonoBehaviour
         {
 			Vector3 moveDirection = (targetPosition - transform.position).normalized;
 			transform.position += moveDirection * moveSpeed * Time.deltaTime;
+			transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(targetPosition - transform.position), Time.deltaTime * rotationSpeed);
 			unitAnimator.SetBool("IsWalking", true);
 		}
 		else
