@@ -7,6 +7,8 @@ public class Unit : MonoBehaviour
 {
 	public static event EventHandler OnAnyActionPointsChanged;
 
+	[SerializeField] private bool isEnemy;
+
 	private const int ACTION_POINTS_MAX = 2;
 
 	private GridPosition gridPosition;
@@ -31,7 +33,7 @@ public class Unit : MonoBehaviour
 
 	private void Update()
 	{
-        
+
 
 		GridPosition newGridPosition = LevelGrid.Instance.GetGridPosition(transform.position);
 		if (newGridPosition != gridPosition)
@@ -46,9 +48,9 @@ public class Unit : MonoBehaviour
 		return moveAction;
 	}
 
-	public SpinAction GetSpinAction() 
-	{ 
-		return spinAction; 
+	public SpinAction GetSpinAction()
+	{
+		return spinAction;
 	}
 
 	public GridPosition GetGridPosition()
@@ -99,7 +101,15 @@ public class Unit : MonoBehaviour
 
 	private void TurnSystem_OnTurnChanged(object sender, EventArgs e)
 	{
-		actionPoints = ACTION_POINTS_MAX;
-		OnAnyActionPointsChanged?.Invoke(this, EventArgs.Empty);
+		if ((IsEnemy() && !TurnSystem.Instance.IsPlayerTurn()) || (!IsEnemy() && TurnSystem.Instance.IsPlayerTurn()))
+		{
+			actionPoints = ACTION_POINTS_MAX;
+			OnAnyActionPointsChanged?.Invoke(this, EventArgs.Empty);
+		}
+	}
+
+	public bool IsEnemy()
+	{
+		return isEnemy;
 	}
 }
