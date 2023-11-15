@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1083855557817065872}
   - component: {fileID: 3112337949905566698}
   - component: {fileID: -5091097094051396485}
+  - component: {fileID: -8059291877761771635}
   m_Layer: 7
   m_Name: Unit
   m_TagString: Untagged
@@ -113,6 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 950c6131bd64c394abfb83a267bdecd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 40
   maxShootDistance: 7
   aimingStateTime: 1
   shootingStateTime: 0.1
@@ -146,6 +148,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0b32d8d13a7e1b47b9348af8c6ceb55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 100
+--- !u!114 &-8059291877761771635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3935284387202053600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccf06f0bc460ae6409791e9e88930301, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ragdollPrefab: {fileID: 2500033076704086613, guid: d87f173733df08f4586a40465553c94a,
+    type: 3}
+  originalRootBone: {fileID: 8450990007094643046}
 --- !u!1 &6625918796039982091
 GameObject:
   m_ObjectHideFlags: 0
@@ -693,6 +711,12 @@ Animator:
 --- !u!4 &8450459688045108604 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4580766925885248, guid: 2f3e27eecb190e44a9af50723c394274,
+    type: 3}
+  m_PrefabInstance: {fileID: 8455040452817932860}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8450990007094643046 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4966341056781146, guid: 2f3e27eecb190e44a9af50723c394274,
     type: 3}
   m_PrefabInstance: {fileID: 8455040452817932860}
   m_PrefabAsset: {fileID: 0}
