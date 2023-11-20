@@ -6,6 +6,8 @@ using UnityEngine;
 public class Unit : MonoBehaviour
 {
 	public static event EventHandler OnAnyActionPointsChanged;
+	public static event EventHandler OnAnyUnitSpawned;
+	public static event EventHandler OnAnyUnitDead;
 
 	[SerializeField] private bool isEnemy;
 
@@ -30,8 +32,10 @@ public class Unit : MonoBehaviour
 	{
 		gridPosition = LevelGrid.Instance.GetGridPosition(transform.position);
 		LevelGrid.Instance.AddUnitAtGridPosition(gridPosition, this);
+
 		TurnSystem.Instance.OnTurnChanged += TurnSystem_OnTurnChanged;
 		healthSystem.OnDead += HealthSystem_OnDead;
+		OnAnyUnitSpawned?.Invoke(this, EventArgs.Empty);
 	}
 
 	private void Update()
@@ -118,6 +122,7 @@ public class Unit : MonoBehaviour
 	private void HealthSystem_OnDead(object sender, EventArgs e)
 	{
 		LevelGrid.Instance.RemoveUnitAtGridPosition(gridPosition, this);
+		OnAnyUnitDead?.Invoke(this, EventArgs.Empty);
 		Destroy(gameObject);
 	}
 
